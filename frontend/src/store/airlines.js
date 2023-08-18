@@ -13,7 +13,7 @@ export const getAirlines = (state) => {
 
 // Thunk Action Creators
 export const fetchAirlines = () => async dispatch => {
-  const res = await fetch(`http://api.aviationstack.com/v1/airlines?access_key=${process.env.REACT_APP_AVIATION_API_KEY}`);
+  const res = await fetch(`/airlines?access_key=${process.env.REACT_APP_AVIATION_API_KEY}`);
   const data = await res.json();
   return dispatch(setAirlines(data.data));
 }
