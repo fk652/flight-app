@@ -6,8 +6,8 @@ import errorReducer from './errors';
 
 const rootReducer = combineReducers({
   errors: errorReducer,
-  airports: airportsReducer,
-  airlines: airlinesReducer
+  airlines: airlinesReducer,
+  airports: airportsReducer
 });
 
 let enhancer;
