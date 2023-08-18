@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { fetchAirports } from "./store/airports";
 import FlightSearchBar from "./components/FlightSearchBar";
 import FlightsDisplay from "./components/FlightsDisplay";
@@ -15,9 +16,12 @@ function App() {
 
   return (
     <div className="flight-app-container">
-      <h1>Flight Search</h1>
-      <FlightSearchBar />
-      <FlightsDisplay />
+    <Switch>
+      <Route path="">
+        <FlightSearchBar />
+        {/* <FlightsDisplay /> */}
+      </Route>
+    </Switch>
     </div>
   );
 }

@@ -1,5 +1,16 @@
 .flight-search-bar {
-  width: 200px;
-  height: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
   background-color: whitesmoke;
+  padding: 10px;
+}
+
+.flight-search-bar h1 {
+  text-align: center;
+}
+
+.flight-form-field {
+  display: flex;
+  flex-direction: column;
 }

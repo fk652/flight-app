@@ -1,10 +1,11 @@
 .flight-app-container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   flex-direction: column;
   row-gap: 10px;
-  width: 100vw;
-  height: 100vh;
+  width: calc(100vw - 20px);
+  height: calc(100vh - 20px);
+  padding: 10px;
   background-color: gainsboro;
 }
