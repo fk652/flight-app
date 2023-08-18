@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import airportsReducer from './airports';
 import airlinesReducer from './airlines';
 import errorReducer from './errors';
+import flightsReducer from './flights';
 
 const rootReducer = combineReducers({
   errors: errorReducer,
   airlines: airlinesReducer,
-  airports: airportsReducer
+  airports: airportsReducer,
+  flights: flightsReducer
 });
 
 let enhancer;

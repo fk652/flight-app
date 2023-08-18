@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./FlightSearchBar.css";
 import { getAirlines } from "../../store/airlines";
 import { getAirports } from "../../store/airports";
+import { fetchFlights } from "../../store/flights";
 
 const FlightSearchBar = () => {
+  const dispatch = useDispatch();
+
+  const airportOptions = useSelector(getAirports);
   const airlineOptions = useSelector(getAirlines);
   airlineOptions.sort((a, b) => {
     let x = a.airline_name.toLowerCase();
@@ -14,8 +18,6 @@ const FlightSearchBar = () => {
     if (x < y) return -1;
     return 0;
   })
-
-  let airportOptions = useSelector(getAirports);
 
   const [airline, setAirline] = useState('');
   const [departingAirport, setDepartingAirport] = useState('');
@@ -27,8 +29,18 @@ const FlightSearchBar = () => {
     setter(e.target.value);
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
+    const parameters = {
+      flight_status: flightStatus,
+      flight_number: flightNumber,
+      airline_name: airline,
+      dep_iata: departingAirport,
+      arr_iata: arrivingAirport
+    }
+
+    dispatch(fetchFlights(parameters));
   }
 
   return (
@@ -135,7 +147,11 @@ const FlightSearchBar = () => {
         </select>
       </div>
 
-      <button className="flight-form-submit" type="submit">
+      <button 
+        className="flight-form-submit" 
+        type="submit" 
+        disabled={!(airline || departingAirport || arrivingAirport || flightNumber || flightStatus)}
+      >
         Search Flight
       </button>
     </form>
