@@ -1,8 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import airportsReducer from './airports';
+import airlinesReducer from './airlines';
 
 const rootReducer = combineReducers({
-  
+  airports: airportsReducer,
+  airlines: airlinesReducer
 });
 
 let enhancer;
