@@ -1,6 +1,14 @@
+import "./index.css"
+import FlightSearchBar from "./components/FlightSearchBar";
+import FlightsDisplay from "./components/FlightsDisplay";
+
 function App() {
   return (
-    <h1>Hello from App</h1>
+    <div className="flight-app-container">
+      <h1>Flight Search</h1>
+      <FlightSearchBar />
+      <FlightsDisplay />
+    </div>
   );
 }
 

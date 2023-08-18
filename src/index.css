@@ -1,1 +1,10 @@
-/* TODO Add site wide styles */
+.flight-app-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 100vw;
+  height: 100vh;
+  background-color: gainsboro;
+}
