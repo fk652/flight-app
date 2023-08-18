@@ -2,8 +2,10 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import airportsReducer from './airports';
 import airlinesReducer from './airlines';
+import errorReducer from './errors';
 
 const rootReducer = combineReducers({
+  errors: errorReducer,
   airports: airportsReducer,
   airlines: airlinesReducer
 });
