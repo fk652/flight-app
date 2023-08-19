@@ -25,7 +25,7 @@ This app uses [node package manager](https://www.npmjs.com/)
 
 ## Example Screenshot
 
-<img width=600 alt="overview" src="./flight-app-screenshot.png">
+<img alt="overview" src="./flight-app-screenshot.png">
 
 ## Problems I faced
 
