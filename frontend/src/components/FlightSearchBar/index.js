@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import "./FlightSearchBar.css";
 import { getAirlines } from "../../store/airlines";
 import { getAirports } from "../../store/airports";
-import { fetchFlights } from "../../store/flights";
+import { fetchFlights, getNumberOfFlights, resetFlights } from "../../store/flights";
 
 const FlightSearchBar = () => {
   const dispatch = useDispatch();
 
+  const numFlights = useSelector(getNumberOfFlights);
   const airportOptions = useSelector(getAirports);
   const airlineOptions = useSelector(getAirlines);
   airlineOptions.sort((a, b) => {
@@ -24,12 +25,13 @@ const FlightSearchBar = () => {
   const [arrivingAirport, setArrivingAirport] = useState('');
   const [flightNumber, setFlightNumber] = useState('');
   const [flightStatus, setFlightStatus] = useState('');
+  const [searching, setSearching] = useState(false);
 
   const update = (setter) => (e) => {
     setter(e.target.value);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const parameters = {
@@ -40,7 +42,10 @@ const FlightSearchBar = () => {
       arr_iata: arrivingAirport
     }
 
-    dispatch(fetchFlights(parameters));
+    setSearching(true);
+    await dispatch(resetFlights());
+    await dispatch(fetchFlights(parameters));
+    setSearching(false);
   }
 
   if (!airlineOptions || !airlineOptions) return null;
@@ -152,10 +157,18 @@ const FlightSearchBar = () => {
       <button 
         className="flight-form-submit" 
         type="submit" 
-        disabled={!(airline || departingAirport || arrivingAirport || flightNumber || flightStatus)}
+        disabled={!(airline || departingAirport || arrivingAirport || flightNumber || flightStatus) || searching}
       >
         Search Flight
       </button>
+
+      <div className="flight-search-status">
+        {
+          searching ? "Searching... (may take a few minutes)" 
+                    : numFlights !== -1 ? `${numFlights} results founds` 
+                                        : ""
+        }
+      </div>
     </form>
   );
 };
