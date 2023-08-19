@@ -68,7 +68,7 @@ const FlightSearchBar = () => {
           onChange={update(setAirline)} 
           defaultValue={airline}
         >
-          <option value="">- Select an Airline -</option>
+          <option value="">- no selection -</option>
           {
             airlineOptions.map((airline, index) => {
               return (
@@ -89,7 +89,7 @@ const FlightSearchBar = () => {
                 name="departingAirline" 
                 onChange={update(setDepartingAirport)} 
                 defaultValue={departingAirport}>
-          <option value="">- Select a Departing Airport -</option>
+          <option value="">- no selection -</option>
           {
             airportOptions.map((airport, index) => {
               return (
@@ -112,7 +112,7 @@ const FlightSearchBar = () => {
           onChange={update(setArrivingAirport)} 
           defaultValue={arrivingAirport}
         >
-          <option value="">- Select an Arriving Airport -</option>
+          <option value="">- no selection -</option>
           {
             airportOptions.map((airport, index) => {
               return (
@@ -148,7 +148,7 @@ const FlightSearchBar = () => {
           onChange={update(setFlightStatus)} 
           defaultValue={flightStatus}
         >
-          <option value="">- Select a Flight Status -</option>
+          <option value="">- no selection -</option>
           <option value="scheduled">Scheduled</option>
           <option value="active">Active</option>
           <option value="landed">Landed</option>
