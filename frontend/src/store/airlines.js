@@ -1,3 +1,5 @@
+import { addErrors } from "./errors";
+
 export const SET_AIRLINES = "airlines/SET_AIRLINES";
 
 // Actions
@@ -15,7 +17,12 @@ export const getAirlines = (state) => {
 export const fetchAirlines = () => async dispatch => {
   const res = await fetch(`/airlines?access_key=${process.env.REACT_APP_AVIATION_API_KEY}`);
   const data = await res.json();
-  return dispatch(setAirlines(data.data));
+
+  if (data.error) {
+    dispatch(addErrors(data.error));
+  } else {
+    dispatch(setAirlines(data.data));
+  }
 }
 
 // Reducer

@@ -1,3 +1,5 @@
+import { addErrors } from "./errors";
+
 export const SET_AIRPORTS = "airports/SET_AIRPORTS";
 
 // Actions
@@ -13,11 +15,14 @@ export const getAirports = (state) => {
 
 // Thunk Action Creators
 export const fetchAirports = () => async dispatch => {
-  const res = await fetch(`/airports?access_key=${process.env.REACT_APP_AVIATION_API_KEY}`, {
-    referrerPolicy: "unsafe-url" 
-  });
+  const res = await fetch(`/airports?access_key=${process.env.REACT_APP_AVIATION_API_KEY}`)
   const data = await res.json();
-  return dispatch(setAirports(data.data));
+
+  if (data.error) {
+    dispatch(addErrors(data.error));
+  } else {
+    dispatch(setAirports(data.data));
+  }
 }
 
 // Reducer

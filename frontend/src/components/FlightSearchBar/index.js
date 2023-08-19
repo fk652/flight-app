@@ -4,11 +4,13 @@ import "./FlightSearchBar.css";
 import { getAirlines } from "../../store/airlines";
 import { getAirports } from "../../store/airports";
 import { fetchFlights, getNumberOfFlights, resetFlights } from "../../store/flights";
+import { getErrors } from "../../store/errors";
 
 const FlightSearchBar = () => {
   const dispatch = useDispatch();
 
   const numFlights = useSelector(getNumberOfFlights);
+  const errors = useSelector(getErrors);
   const airportOptions = useSelector(getAirports);
   const airlineOptions = useSelector(getAirlines);
   airlineOptions.sort((a, b) => {
@@ -25,6 +27,7 @@ const FlightSearchBar = () => {
   const [arrivingAirport, setArrivingAirport] = useState('');
   const [flightNumber, setFlightNumber] = useState('');
   const [flightStatus, setFlightStatus] = useState('');
+  const [flightDate, setFlightDate] = useState('');
   const [searching, setSearching] = useState(false);
 
   const update = (setter) => (e) => {
@@ -39,7 +42,8 @@ const FlightSearchBar = () => {
       flight_number: flightNumber,
       airline_name: airline,
       dep_iata: departingAirport,
-      arr_iata: arrivingAirport
+      arr_iata: arrivingAirport,
+      flight_date: flightDate
     }
 
     setSearching(true);
@@ -154,10 +158,23 @@ const FlightSearchBar = () => {
         </select>
       </div>
 
+      {/* <div className="flight-form-field">
+        <label className="flight-form-label" htmlFor="flightDate">
+          Flight Date
+        </label>
+        <input 
+          type="date" 
+          name="flightDate"
+          min={new Date().toLocaleDateString('en-ca')}
+          onChange={update(setFlightDate)}
+          value={flightDate}
+        />
+      </div> */}
+
       <button 
         className="flight-form-submit" 
         type="submit" 
-        disabled={!(airline || departingAirport || arrivingAirport || flightNumber || flightStatus) || searching}
+        disabled={!(airline || departingAirport || arrivingAirport || flightNumber || flightStatus || flightDate) || searching}
       >
         Search Flight
       </button>
@@ -168,6 +185,10 @@ const FlightSearchBar = () => {
                     : numFlights !== -1 ? `${numFlights} results founds` 
                                         : ""
         }
+      </div>
+
+      <div className="flight-search-errors">
+        {errors ? `ERROR - ${errors.message}` : ''}
       </div>
     </form>
   );

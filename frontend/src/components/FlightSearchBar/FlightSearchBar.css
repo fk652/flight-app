@@ -18,3 +18,8 @@
 .flight-search-status {
   text-align: center;
 }
+
+.flight-search-errors {
+  color: red;
+  max-width: 500px;
+}

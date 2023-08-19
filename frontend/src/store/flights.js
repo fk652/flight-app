@@ -28,7 +28,12 @@ export const fetchFlights = (parameters) => async dispatch => {
   const queryString = paramsFormatter(parameters);
   const res = await fetch(`/flights?${queryString}`);
   const data = await res.json();
-  dispatch(setFlights(data.data));
+
+  if (data.error) {
+    dispatch(addErrors(data.error));
+  } else {
+    dispatch(setFlights(data.data));
+  }
 }
 
 // Reducer
