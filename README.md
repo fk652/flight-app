@@ -19,7 +19,9 @@ This app uses [node package manager](https://www.npmjs.com/)
 5. In the `/frontend` folder create a `.env` file and 
 6. Add this line to the `.env` file `REACT_APP_AVIATION_API_KEY=<YOUR_API_KEY_HERE>` (substitute `<YOUR_API_KEY_HERE>` with your aviationstack api key)
 7. In the `/frontend` folder run `npm start` and open up localhost:3000 on your browser.
-8. Play around with the app 🙂.
+8. Play around with the app 🙂. 
+
+(note that the `[search flights]` button is disabled if nothing is input, and while waiting for search results).
 
 ## Example Screenshot
 
