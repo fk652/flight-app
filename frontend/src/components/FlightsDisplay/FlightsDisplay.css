@@ -1,5 +1,6 @@
 .flights-display {
-  width: 500px;
-  height: 200px;
-  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
 }

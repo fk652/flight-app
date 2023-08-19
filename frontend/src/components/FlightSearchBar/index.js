@@ -43,6 +43,8 @@ const FlightSearchBar = () => {
     dispatch(fetchFlights(parameters));
   }
 
+  if (!airlineOptions || !airlineOptions) return null;
+
   return (
     <form className="flight-search-bar" onSubmit={handleSubmit}>
       <h1>Flight Search Form</h1>
